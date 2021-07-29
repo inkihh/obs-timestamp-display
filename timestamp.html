@@ -1,0 +1,42 @@
+<html>
+  <head>
+  <style>
+
+    body { 
+      background-color: red;
+      color: white;
+      overflow: hidden;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .center-screen {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+      font-weight: 900;
+      padding: 0px;
+    }
+
+  </style>
+  </head>
+  <body>
+    <div id="time" class="center-screen"></div>
+
+    <script type="application/javascript">
+
+      const intervalId = window.setInterval(function()
+      {
+        const currentdate = new Date();
+        const datetime = `${currentdate.getFullYear()}-${('0' + (currentdate.getMonth()+1)).slice(-2)}-${currentdate.getDate()} ${currentdate.getHours()}:${('0' + (currentdate.getMinutes()+1)).slice(-2)}:${('0' + (currentdate.getSeconds()+1)).slice(-2)}`;
+        const tz = currentdate.getTimezoneOffset();
+
+        document.getElementById('time').innerHTML = `${datetime} UTC${tz<0?'+':'-'}${Math.abs(tz/60)}`
+      }, 1000);
+
+    </script>
+  </body>
+</html>
